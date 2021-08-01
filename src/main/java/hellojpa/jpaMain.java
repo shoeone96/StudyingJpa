@@ -20,6 +20,7 @@ public class jpaMain {
             Member findmember = em.find(Member.class, 100L);
             Member findmember2 = em.find(Member.class, 100L);
 
+            System.out.println("result = " + (findmember == findmember2));
             tx.commit();
         } catch (Exception e) {
             tx.rollback();
