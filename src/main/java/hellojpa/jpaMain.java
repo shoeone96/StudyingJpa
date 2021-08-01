@@ -15,16 +15,14 @@ public class jpaMain {
         tx.begin();
         try {
 
-            Member member1 = new Member(150L, "A");
-            Member member2 = new Member(160L, "B");
+            Member member = new Member(200L, "member200");
+            em.persist(member);
 
-            // 영속성 컨텍스트에 계속 쌓이는 단계
-            em.persist(member1);
-            em.persist(member2);
-            System.out.println("==============");
+            em.flush();
 
-            // 실제 db로 넘어가는 단계
-           tx.commit();
+            System.out.println("===============");
+
+            tx.commit();
 
         } catch (Exception e) {
             tx.rollback();
