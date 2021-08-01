@@ -22,7 +22,10 @@ public class jpaMain {
 
             // 영속
             em.persist(member);
-
+            // 영속성 컨텍스트에서 분리 -> 준영속 상태로
+            em.detach(member);
+            // 객체를 삭제한 상태(삭제)
+            em.remove(member);
 
             tx.commit();
         } catch (Exception e) {
