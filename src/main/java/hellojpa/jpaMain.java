@@ -15,10 +15,13 @@ public class jpaMain {
         tx.begin();
         try {
 
-            Member member = new Member(200L, "member200");
-            em.persist(member);
+            Member member = em.find(Member.class, 150L);
+            member.setName("AAAAA");
 
-            em.flush();
+            // entity 만
+            em.detach(member);
+            // 영속성 컨텍스트 초기화(1차 캐시까지 다 지워서 find 내용도 없어짐, 뒤에 같은 내용 다시 찾으면 1차 캐시에 없어 다시 db에서 쿼리로 찾아와야 함)
+            em.clear();
 
             System.out.println("===============");
 
@@ -27,7 +30,7 @@ public class jpaMain {
         } catch (Exception e) {
             tx.rollback();
         } finally {
-            em.close();
+            em.close();  // 앞쪽에 커밋 전에 하면 영속성 없어짐
         }
 
         emf.close();
