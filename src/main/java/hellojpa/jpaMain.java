@@ -15,13 +15,17 @@ public class jpaMain {
         tx.begin();
         try {
 
-            // 비영속
+            Member member1 = new Member(150L, "A");
+            Member member2 = new Member(160L, "B");
 
-            Member findmember = em.find(Member.class, 100L);
-            Member findmember2 = em.find(Member.class, 100L);
+            // 영속성 컨텍스트에 계속 쌓이는 단계
+            em.persist(member1);
+            em.persist(member2);
+            System.out.println("==============");
 
-            System.out.println("result = " + (findmember == findmember2));
-            tx.commit();
+            // 실제 db로 넘어가는 단계
+           tx.commit();
+
         } catch (Exception e) {
             tx.rollback();
         } finally {
