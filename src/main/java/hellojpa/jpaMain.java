@@ -16,17 +16,9 @@ public class jpaMain {
         try {
 
             // 비영속
-            Member member = new Member();
-            member.setId(100L);
-            member.setName("HelloJPA");
-
-            // 영속
-            em.persist(member);
 
             Member findmember = em.find(Member.class, 100L);
-
-            System.out.println("findMember.id =" + findmember.getId());
-            System.out.println("findMember.name" + findmember.getName());
+            Member findmember2 = em.find(Member.class, 100L);
 
             tx.commit();
         } catch (Exception e) {
