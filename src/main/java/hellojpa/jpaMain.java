@@ -15,15 +15,10 @@ public class jpaMain {
         tx.begin();
         try {
 
-            Member member = em.find(Member.class, 150L);
-            member.setName("AAAAA");
+            Member member = new Member();
+            member.setUsername("test");
 
-            // entity 만
-            em.detach(member);
-            // 영속성 컨텍스트 초기화(1차 캐시까지 다 지워서 find 내용도 없어짐, 뒤에 같은 내용 다시 찾으면 1차 캐시에 없어 다시 db에서 쿼리로 찾아와야 함)
-            em.clear();
-
-            System.out.println("===============");
+            em.persist(member);
 
             tx.commit();
 
