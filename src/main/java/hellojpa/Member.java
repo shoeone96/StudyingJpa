@@ -13,6 +13,12 @@ public class Member {
     @Column(name = "USERNAME")
     private String username;
 
+    @ManyToOne
+    @JoinColumn(name = "TEAM_ID", insertable = false, updatable = false)
+    private Team team;
+    // 이 상태에서는 둘 다 연관관계의 주인인 된 상태(서로 FK를 가지고 있는)
+    // insertable, updatable flase를 넣어서 읽기 전용상타로 만든다.
+
     public Long getId() {
         return id;
     }
