@@ -1,14 +1,10 @@
 package hellojpa;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import java.util.ArrayList;
-import java.util.List;
+import javax.persistence.*;
 
 @Entity
-public class Product {
+@Inheritance(strategy = InheritanceType.JOINED)
+public class Item {
 
     @Id @GeneratedValue
     private Long id;
@@ -18,10 +14,6 @@ public class Product {
     public Long getId() {
         return id;
     }
-
-    @OneToMany(mappedBy = "product")
-    private List<MemberProduct> memberProducts = new ArrayList<>();
-
 
     public void setId(Long id) {
         this.id = id;

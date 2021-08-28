@@ -15,17 +15,14 @@ public class jpaMain {
         tx.begin();
         try {
 
-            Member member = new Member();
-            member.setUsername("member1");
+            Movie movie = new Movie();
+            movie.setDirector("aaaa");
+            movie.setActor("bbbb");
+            movie.setName("바람과 함께 사라지다");
+            movie.setPrice(10000);
 
-            em.persist(member);
+            em.persist(movie);
 
-            Team team = new Team();
-            team.setName("TeamA");
-            // 이 부분이 조금 애매할 수 있음
-            team.getMemberList().add(member);
-
-            em.persist(team);
 
             tx.commit();
         } catch (Exception e) {
