@@ -25,16 +25,17 @@ public class jpaMain {
             //
 
             Member refMember = em.getReference(Member.class, member1.getId());
-            System.out.println("m2 = " + refMember.getClass());
+            System.out.println("m2 = " + refMember.getClass()); // proxy 상태
 
-            Member findMember = em.find(Member.class, member1.getId());
-            System.out.println("reference" + findMember.getClass());
+            em.detach(refMember);
 
-            System.out.println("refMember == findMember " + (refMember == findMember));
+            refMember.getUsername();
+            System.out.println("refMember = " + refMember.getUsername());
 
             tx.commit();
         } catch (Exception e) {
             tx.rollback();
+            e.printStackTrace();
         } finally {
             em.close();  // 앞쪽에 커밋 전에 하면 영속성 없어짐
         }
