@@ -22,6 +22,14 @@ public class Member extends BaseEntity{
     @JoinColumn(name = "TEAM_ID")
     private Team team;
 
+    public Team getTeam() {
+        return team;
+    }
+
+    public void setTeam(Team team) {
+        this.team = team;
+    }
+
     @OneToOne
     @JoinColumn(name = "LOCKER_ID")
     private Locker locker;
