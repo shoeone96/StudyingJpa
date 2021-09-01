@@ -17,26 +17,17 @@ public class jpaMain {
         EntityTransaction tx = em.getTransaction();
         tx.begin();
         try {
-            Team team = new Team();
-            team.setName("teamA");
-            em.persist(team);
 
-            Member member1 = new Member();
-            member1.setUsername("member1");
-            member1.setTeam(team);
-            em.persist(member1);
+            Child child1 = new Child();
+            Child child2 = new Child();
 
-            Member member2 = new Member();
-            member2.setUsername("member1");
-            member2.setTeam(team);
-            em.persist(member2);
+            Parent parent = new Parent();
+            parent.addChild(child1);
+            parent.addChild(child2);
 
-            em.flush();
-            em.clear();
-            //
-
-            List<Member> members = em.createQuery("select m from Member m", Member.class)
-                    .getResultList();
+            em.persist(parent);
+            em.persist(child1);
+            em.persist(child2);
 
             tx.commit();
         } catch (Exception e) {
