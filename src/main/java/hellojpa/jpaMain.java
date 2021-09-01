@@ -26,6 +26,11 @@ public class jpaMain {
             member1.setTeam(team);
             em.persist(member1);
 
+            Member member2 = new Member();
+            member2.setUsername("member1");
+            member2.setTeam(team);
+            em.persist(member2);
+
             em.flush();
             em.clear();
             //
